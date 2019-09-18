@@ -1,6 +1,6 @@
-import {createStore} from "redux";
+import { createStore } from "redux";
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { ADD_TASK} from'./constants';
+import { ADD_TASK, SET_TASK_DONE} from'./constants';
 
 let initialStore = {
     todos: [
@@ -31,6 +31,17 @@ function reducer ( state = initialStore, action ){
                     action.payload
                 ]
             };
+        case SET_TASK_DONE:
+            let tasks = state.todos.map( (el, i) => {
+                if(i === action.payload) el.isDone = true;
+                return el;
+            })
+            return {
+                ...state,
+                todos: {
+                    tasks
+                }
+            }
         default:
             return {
                 ...state
