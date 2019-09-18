@@ -1,6 +1,5 @@
 import React from 'react';
-import editIcon from '../../img/edit_icon.svg';
-import deleteIcon from '../../img/delete_icon.png';
+import MaterialIcon from 'material-icons-react'
 
 export const ToDoListItem = (props) => {
   const { item, number } = props;
@@ -9,8 +8,15 @@ export const ToDoListItem = (props) => {
         <div className="itemNumber">{number+1}.</div>
         <div className="itemTitle">{item.title}</div>
         <div className="itemControlPanel">
-          <div className="iconContainer edit"><img src={ editIcon } alt="###"/></div>
-          <div className="iconContainer delete"><img src={ deleteIcon } alt="###"/></div>
+            <div className="iconContainer done">
+                <MaterialIcon icon="face" invert/>
+            </div>
+          <div className="iconContainer edit">
+              <MaterialIcon icon="edit" invert/>
+          </div>
+          <div className="iconContainer delete">
+              <MaterialIcon icon="delete_forever" invert/>
+          </div>
         </div>
       </div>
   )
