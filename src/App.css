@@ -47,7 +47,6 @@
   flex-direction: column;
   height: 90%;
   width: 100%;
-  border: 1px solid black;
   overflow-y: scroll;
 }
 
@@ -70,7 +69,8 @@
   display: flex;
   width: auto;
   align-items: center;
-  border: 1px solid blue;
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px black;
   margin: 10px 10%;
   padding: 1em 1em;
 }
