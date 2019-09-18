@@ -18,7 +18,7 @@ class ToDoList extends React.Component{
             {
               todos.map( (el) => {
                 return (
-                    <ToDoListItem item={el}/>
+                    <ToDoListItem item={el} key={el.id}/>
                 )
               })
             }
