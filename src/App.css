@@ -150,10 +150,15 @@
   height: 30px;
   cursor: pointer;
   border-radius: 5px;
+  color: #fefefe;
+}
+
+.done{
+  background-color: #43cb42;
 }
 
 .edit{
-  background-color: aqua;
+  background-color: #009aff;
 }
 
 .delete{
