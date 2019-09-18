@@ -1,8 +1,8 @@
-import {LOAD_ALL_TODOS} from'./constants';
+import {ADD_TASK} from'./constants';
 
-export const LoadTodos = (todos) =>  {
+export const addTask = (task) =>  {
     return {
-            type: LOAD_ALL_TODOS,
-            payload: todos,
+            type: ADD_TASK,
+            payload: task,
     }
 };

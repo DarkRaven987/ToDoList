@@ -1,6 +1,6 @@
 import {createStore} from "redux";
 import { composeWithDevTools } from 'redux-devtools-extension';
-import {LOAD_ALL_TODOS, CHECK_STATUS} from'./constants';
+import { ADD_TASK} from'./constants';
 
 let initialStore = {
     todos: [
@@ -23,10 +23,13 @@ let initialStore = {
 
 function reducer ( state = initialStore, action ){
     switch(action.type){
-        case LOAD_ALL_TODOS:
+        case ADD_TASK:
             return {
                 ...state,
-                users: action.payload
+                todos: [
+                    ...state.todos,
+                    action.payload
+                ]
             };
         default:
             return {
