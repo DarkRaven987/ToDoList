@@ -20,8 +20,14 @@ class AddTaskPanel extends React.Component {
       }});
     };
 
-    addButtonHandler = () => {
-        this.props.addTask(this.state.newTask);
+    buttonClickHandler = ( isAdd = false ) => {
+        let titleCondition = this.state.newTask.title.length > 4;
+
+        isAdd && titleCondition ?
+            this.props.addTask(this.state.newTask)
+            :
+            alert('Task title is too short. Should be more than 4 symbols.');
+
         this.setState({newTask: {
                 ...this.state.newTask,
                 title: ''
@@ -34,8 +40,8 @@ class AddTaskPanel extends React.Component {
                 <h3>New task:</h3>
                 <input id="newTask" type="text" placeholder="Enter new task title" value={this.state.newTask.title} onChange={ (e) => this.changeTaskTitle(e) }/>
                 <div className="newTaskControlPanel">
-                    <div className="newTaskButton Add" onClick={ () => this.addButtonHandler() }>Add</div>
-                    <div className="newTaskButton Clear">Clear</div>
+                    <div className="newTaskButton Add" onClick={ () => this.buttonClickHandler(true) }>Add</div>
+                    <div className="newTaskButton Clear" onClick={ () => this.buttonClickHandler() }>Clear</div>
                 </div>
             </div>
 
