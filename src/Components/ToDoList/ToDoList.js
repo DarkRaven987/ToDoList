@@ -2,23 +2,27 @@ import React from 'react';
 import {connect} from "react-redux";
 import { bindActionCreators } from "redux";
 
+import {addTask} from "../../Redux/actions";
 import {ToDoListItem} from "../ToDoListItem/ToDoListItem";
+import AddTaskPanel from '../AddTaskPanel/AddTaskPanel';
 
 class ToDoList extends React.Component{
   render(){
-    const {todos} = this.props;
-    console.log(todos);
+    const { todos, addTask } = this.props;
 
     return(
       <div className="todoListEnv">
         <div className="listContainer">
 
           <h2 className="todoListHeader">Tasks to do list</h2>
+
+          <AddTaskPanel addTask={addTask} todos={todos}/>
+
           <div className="todoList">
             {
-              todos.map( (el) => {
+              todos.map( (el, i) => {
                 return (
-                    <ToDoListItem item={el} key={el.id}/>
+                    <ToDoListItem item={el} key={el.id} number={i}/>
                 )
               })
             }
@@ -38,7 +42,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // checkStatus: bindActionCreators(checkStatus, dispatch),
+    addTask: bindActionCreators(addTask, dispatch),
   }
 }
 
