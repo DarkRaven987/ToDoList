@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import { bindActionCreators } from "redux";
 
 import {addTask} from "../../Redux/actions";
-import {ToDoListItem} from "../ToDoListItem/ToDoListItem";
+import ToDoListItem from "../ToDoListItem/ToDoListItem";
 import AddTaskPanel from '../AddTaskPanel/AddTaskPanel';
 
 class ToDoList extends React.Component{
