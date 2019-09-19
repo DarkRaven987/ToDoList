@@ -9,7 +9,7 @@ export const ToDoListItem = (props) => {
         <div className="itemTitle">{item.title}</div>
         <div className="itemControlPanel">
             <div className="iconContainer done">
-                <MaterialIcon icon="face" invert/>
+                <MaterialIcon icon="done" invert/>
             </div>
           <div className="iconContainer edit">
               <MaterialIcon icon="edit" invert/>
