@@ -151,6 +151,15 @@
   cursor: pointer;
   border-radius: 5px;
   color: #fefefe;
+  user-select: none;
+}
+
+.doneItem{
+  background-color: #89ef88;
+}
+
+.undoneItem{
+  background-color: #e68774;
 }
 
 .done{
