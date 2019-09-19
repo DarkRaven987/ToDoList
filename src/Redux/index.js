@@ -1,27 +1,28 @@
 import { createStore } from "redux";
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { ADD_TASK, SET_TASK_DONE} from'./constants';
+import {ADD_TASK, SET_TASK_DONE, SET_TASK_UNDONE} from './constants';
 
 let initialStore = {
     todos: [
-        {id: 1, title: 'Wake up!', isDone: true},
-        {id: 2, title: 'Make some tea.', isDone: false},
-        {id: 3, title: 'Have a breakfast.', isDone: false},
-        {id: 4, title: 'Clear my teeth.', isDone: false},
-        {id: 5, title: 'Brush my hair.', isDone: false},
-        {id: 6, title: 'Go to work.', isDone: false},
-        {id: 7, title: 'Resolve some project issues.', isDone: false},
-        {id: 8, title: 'Report about resolved issues.', isDone: false},
-        {id: 9, title: 'Have a lunch.', isDone: false},
-        {id: 10, title: 'Go back to work.', isDone: false},
-        {id: 11, title: 'Ho home at 18:00 p.m.', isDone: false},
-        {id: 12, title: 'Have a dinner.', isDone: false},
-        {id: 13, title: 'Go play some video games.', isDone: false},
-        {id: 14, title: 'Go the fuck to sleep.', isDone: false},
+        {id: 1, title: 'Wake up!', isDone: 'done'},
+        {id: 2, title: 'Make some tea.', isDone: 'undone'},
+        {id: 3, title: 'Have a breakfast.', isDone: 'neutral'},
+        {id: 4, title: 'Clear my teeth.', isDone: 'neutral'},
+        {id: 5, title: 'Brush my hair.', isDone: 'neutral'},
+        {id: 6, title: 'Go to work.', isDone: 'neutral'},
+        {id: 7, title: 'Resolve some project issues.', isDone: 'neutral'},
+        {id: 8, title: 'Report about resolved issues.', isDone: 'neutral'},
+        {id: 9, title: 'Have a lunch.', isDone: 'neutral'},
+        {id: 10, title: 'Go back to work.', isDone: 'neutral'},
+        {id: 11, title: 'Ho home at 18:00 p.m.', isDone: 'neutral'},
+        {id: 12, title: 'Have a dinner.', isDone: 'neutral'},
+        {id: 13, title: 'Go play some video games.', isDone: 'neutral'},
+        {id: 14, title: 'Go the fuck to sleep.', isDone: 'neutral'},
     ]
 };
 
 function reducer ( state = initialStore, action ){
+    let tasks;
     switch(action.type){
         case ADD_TASK:
             return {
@@ -32,16 +33,27 @@ function reducer ( state = initialStore, action ){
                 ]
             };
         case SET_TASK_DONE:
-            let tasks = state.todos.map( (el, i) => {
-                if(i === action.payload) el.isDone = true;
+            tasks = state.todos.map( (el, i) => {
+                if(i === action.payload) el.isDone = 'done';
                 return el;
-            })
+            });
             return {
                 ...state,
                 todos: {
                     tasks
                 }
-            }
+            };
+        case SET_TASK_UNDONE:
+            tasks = state.todos.map( (el, i) => {
+                if(i === action.payload) el.isDone = 'undone';
+                return el;
+            });
+            return {
+                ...state,
+                todos: {
+                    tasks
+                }
+            };
         default:
             return {
                 ...state
