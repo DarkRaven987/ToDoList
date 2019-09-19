@@ -2,13 +2,31 @@ import React from 'react';
 import {connect} from "react-redux";
 import { bindActionCreators } from "redux";
 
-import {addTask} from "../../Redux/actions";
+import {addTask, setTaskDone, setTaskUndone} from "../../Redux/actions";
 import ToDoListItem from "../ToDoListItem/ToDoListItem";
 import AddTaskPanel from '../AddTaskPanel/AddTaskPanel';
+import EditTaskPanel from "../EditTaskPanel/EditTaskPanel";
 
 class ToDoList extends React.Component{
+
+  constructor(props){
+    super(props);
+
+    this.state = {
+      isCreateMode: true,
+      editingTask: {},
+    }
+  }
+
+  setEditingTask = (task) => {
+    this.setState({ editingTask: task}, () => console.log(this.state.editingTask))
+  };
+
   render(){
-    const { todos, addTask } = this.props;
+    const { todos, addTask, setTaskDone, setTaskUndone } = this.props;
+    const { isCreateMode } = this.state;
+
+    console.log(typeof(todos));
 
     return(
       <div className="todoListEnv">
@@ -16,13 +34,22 @@ class ToDoList extends React.Component{
 
           <h2 className="todoListHeader">Tasks to do list</h2>
 
-          <AddTaskPanel addTask={addTask} todos={todos}/>
+          {
+            isCreateMode ? <AddTaskPanel addTask={addTask} todos={todos}/> :  <EditTaskPanel />
+          }
 
           <div className="todoList">
             {
               todos.map( (el, i) => {
                 return (
-                    <ToDoListItem item={el} key={el.id} number={i}/>
+                    <ToDoListItem
+                        item={ el }
+                        key={ el.id }
+                        number={ i }
+                        setEditingTask={this.setEditingTask}
+                        setTaskDone={ setTaskDone }
+                        setTaskUndone={ setTaskUndone }
+                    />
                 )
               })
             }
@@ -43,6 +70,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     addTask: bindActionCreators(addTask, dispatch),
+    setTaskDone: bindActionCreators(setTaskDone, dispatch),
+    setTaskUndone: bindActionCreators(setTaskUndone, dispatch)
   }
 }
 

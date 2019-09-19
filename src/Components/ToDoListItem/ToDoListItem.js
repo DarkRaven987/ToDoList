@@ -6,20 +6,12 @@ class ToDoListItem extends React.Component {
       super(props);
 
       this.state =  {
-          status: 'neutral',
+          status: this.props.item.isDone
       }
   }
 
-    setItemDone = () => {
-        this.setState({ status: 'done'});
-    };
-
-    setItemUndone = () => {
-        this.setState({ status: 'undone'});
-    };
-
   render(){
-      const { number, item} = this.props;
+      const { number, item, setEditingTask, setTaskDone, setTaskUndone, } = this.props;
       const { status } = this.state,
           isNeutral = status === 'neutral',
           isDone = status === 'done',
@@ -31,19 +23,19 @@ class ToDoListItem extends React.Component {
               <div className="itemTitle">{item.title}</div>
               <div className="itemControlPanel">
 
-                  <div className="iconContainer edit">
+                  <div className="iconContainer edit" onClick={() => setEditingTask(item)}>
                       <MaterialIcon icon="edit" invert/>
                   </div>
 
                   { !isDone && (
-                      <div className="iconContainer done" onClick={() => this.setItemDone() }>
+                      <div className="iconContainer done" onClick={() => setTaskDone(item.id) }>
                           <MaterialIcon icon="done" invert/>
                       </div>
                   )}
 
                   { !isUndone && (
                       <div className="iconContainer delete undone">
-                          <MaterialIcon  icon= "close" invert onClick={ () => this.setItemUndone() }/>
+                          <MaterialIcon  icon= "close" invert onClick={ () => setTaskUndone(item.id) }/>
                       </div>
                   )}
               </div>
