@@ -41,9 +41,9 @@ class AddTaskPanel extends React.Component {
             <div className="addTaskContainer">
                 <h3>New task:</h3>
                 <input id="newTask" type="text" placeholder="Enter new task title" value={ this.state.newTask.title } onChange={ (e) => this.changeTaskTitle(e) }/>
-                <div className="newTaskControlPanel">
-                    <div className="newTaskButton Add" onClick={ () => this.buttonClickHandler(true) }>Add</div>
-                    <div className="newTaskButton Clear" onClick={ () => this.buttonClickHandler() }>Clear</div>
+                <div className="TaskControlPanel">
+                    <div className="TaskButton Add" onClick={ () => this.buttonClickHandler(true) }>Add</div>
+                    <div className="TaskButton Clear" onClick={ () => this.buttonClickHandler() }>Clear</div>
                 </div>
             </div>
 
