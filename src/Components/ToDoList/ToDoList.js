@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { addTask, setTaskDone, setTaskUndone, editTask } from "../../Redux/actions";
+import { addTask, setTaskDone, setTaskUndone, editTask, deleteTask } from "../../Redux/actions";
 import ToDoListItem from "../ToDoListItem/ToDoListItem";
 import AddTaskPanel from '../AddTaskPanel/AddTaskPanel';
 import EditTaskPanel from "../EditTaskPanel/EditTaskPanel";
@@ -47,7 +47,7 @@ class ToDoList extends React.Component{
   };
 
   render(){
-    const { todos, addTask, setTaskDone, setTaskUndone, editTask } = this.props;
+    const { todos, addTask, setTaskDone, setTaskUndone, editTask, deleteTask } = this.props;
     const { isCreateMode } = this.state;
 
     return(
@@ -85,6 +85,7 @@ class ToDoList extends React.Component{
                         setPanelMode={ this.setPanelMode }
                         setTaskDone={ setTaskDone }
                         setTaskUndone={ setTaskUndone }
+                        deleteTask = { deleteTask }
                     />
                 )
               })
@@ -101,7 +102,7 @@ const mapStateToProps = (state) => {
   return {
     todos: state.todos
   };
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -109,8 +110,9 @@ const mapDispatchToProps = (dispatch) => {
     setTaskDone: bindActionCreators(setTaskDone, dispatch),
     setTaskUndone: bindActionCreators(setTaskUndone, dispatch),
     editTask: bindActionCreators(editTask, dispatch),
+    deleteTask: bindActionCreators(deleteTask, dispatch),
   }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToDoList);
 

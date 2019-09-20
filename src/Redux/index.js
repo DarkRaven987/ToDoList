@@ -61,7 +61,13 @@ function reducer ( state = initialStore, action ){
                 todos: tasks
             };
         case DELETE_TASK:
-            tasks =  state.todos.filter( el => el.id === action.payload ).map( el => {return el});
+            console.log(state.todos);
+            tasks =  state.todos.filter( el => el.id !== action.payload ).map( el => {return el});
+            console.log(tasks);
+            return {
+                ...state,
+                todos: tasks
+            };
         default:
             return {
                 ...state
