@@ -42,22 +42,24 @@
   height: 10%;
 }
 
-.addTaskContainer{
+.addTaskContainer, .editTaskContainer {
   display: flex;
   margin-bottom: 1em;
   justify-content: space-around;
   height: 10%;
   width: 70%;
+  border: 2px solid lightslategrey;
+  border-radius: 15px;
 }
 
-.newTaskControlPanel{
+.TaskControlPanel{
   display: flex;
   align-items: center;
   width: auto;
   margin: 0.7em 0;
 }
 
-.newTaskButton{
+.TaskButton{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -173,4 +175,39 @@
 
 .delete{
   background-color: indianred;
+}
+
+@media screen and ( max-width: 1232px ){
+  .addTaskContainer {
+    width: 90%;
+  }
+}
+
+@media screen and ( max-width: 965px ){
+  .addTaskContainer {
+    flex-direction: column;
+    height: fit-content;
+    align-items: center;
+  }
+
+  .addTaskContainer h3:first-child{
+    margin: .5em 0;
+  }
+
+  #newTask, #editTask {
+    width: 70%;
+    height: 35px;
+    margin-bottom: 0.5em;
+  }
+
+  .TaskControlPanel{
+    margin-top: 0.5em;
+    height: 40px;
+  }
+}
+
+@media screen and ( max-width: 850px ){
+  .todoListEnv{
+    padding: 5vh 10vw; 
+  }
 }
