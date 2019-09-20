@@ -6,7 +6,6 @@ export const EditTaskPanel = (props) => {
         editTask,
         setEditingTaskTitle,
         setPanelMode,
-        setEditingTask,
         getEditTaskNumber,
         getEditingTaskTitle,
         getEditingTask
@@ -19,11 +18,9 @@ export const EditTaskPanel = (props) => {
         if ( isEdit ) {
             if ( titleCondition ) {
                 editTask( getEditingTask() );
-                setEditingTask({});
                 setPanelMode(true);
             } else alert('Task title is too short. Should be more than 4 symbols.');
         } else {
-            setEditingTask({});
             setPanelMode(true);
         }
     };

@@ -65,7 +65,6 @@ class ToDoList extends React.Component{
                 :
                 <EditTaskPanel
                     editTask={ editTask }
-                    setEditingTask={ this.setEditingTask }
                     setEditingTaskTitle={ this.setEditingTaskTitle }
                     setPanelMode={ this.setPanelMode }
                     getEditingTaskTitle={ this.getEditingTaskTitle }
