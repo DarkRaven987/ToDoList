@@ -1,6 +1,6 @@
 import { createStore } from "redux";
 import { composeWithDevTools } from 'redux-devtools-extension';
-import {ADD_TASK, SET_TASK_DONE, SET_TASK_UNDONE, EDIT_TASK} from './constants';
+import { ADD_TASK, SET_TASK_DONE, SET_TASK_UNDONE, EDIT_TASK, DELETE_TASK } from './constants';
 
 let initialStore = {
     todos: [
@@ -60,6 +60,8 @@ function reducer ( state = initialStore, action ){
                 ...state,
                 todos: tasks
             };
+        case DELETE_TASK:
+            tasks =  state.todos.filter( el => el.id === action.payload ).map( el => {return el});
         default:
             return {
                 ...state
