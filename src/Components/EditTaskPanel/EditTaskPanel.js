@@ -3,13 +3,9 @@ import React from 'react';
 class EditTaskPanel extends React.Component {
     constructor(props){
         super(props);
-        const { todos } = this.props;
+
         this.state = {
-            newTask: {
-                id: todos[todos.length-1].id+1,
-                title: '',
-                isDone: false
-            }
+            editingTask: this.props.editingTask
         }
     }
 
@@ -20,10 +16,10 @@ class EditTaskPanel extends React.Component {
             }});
     };
 
-    buttonClickHandler = ( isAdd = false ) => {
-        let titleCondition = this.state.newTask.title.length > 4;
+    buttonClickHandler = ( isEdit = false ) => {
+        let titleCondition = this.state.editingTask.title.length > 4;
 
-        if ( isAdd ) {
+        if ( isEdit ) {
             titleCondition ?
                 this.props.addTask(this.state.newTask)
                 :
@@ -39,11 +35,11 @@ class EditTaskPanel extends React.Component {
     render(){
         return(
             <div className="addTaskContainer">
-                <h3>Task #:</h3>
-                <input id="editTask" type="text" placeholder="Enter task title" value={ this.state.newTask.title } onChange={ (e) => this.changeTaskTitle(e) }/>
+                <h3>Task #{ this.props.editingTask.id }:</h3>
+                <input id="editTask" type="text" placeholder="Enter task title" value={ this.state.editingTask.title } onChange={ (e) => this.changeTaskTitle(e) }/>
                 <div className="newTaskControlPanel">
-                    <div className="newTaskButton Add" onClick={ () => this.buttonClickHandler(true) }>Add</div>
-                    <div className="newTaskButton Clear" onClick={ () => this.buttonClickHandler() }>Clear</div>
+                    <div className="newTaskButton Add" onClick={ () => this.buttonClickHandler(true) }>Edit</div>
+                    <div className="newTaskButton Clear" onClick={ () => this.buttonClickHandler() }>Cancel</div>
                 </div>
             </div>
 

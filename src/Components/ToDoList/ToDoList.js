@@ -19,8 +19,12 @@ class ToDoList extends React.Component{
   }
 
   setEditingTask = (task) => {
-    this.setState({ editingTask: task}, () => console.log(this.state.editingTask))
+    this.setState({ editingTask: task, isCreateMode: false});
   };
+
+  getEditingTask = () => {
+    return this.state.editingTask;
+  }
 
   render(){
     const { todos, addTask, setTaskDone, setTaskUndone } = this.props;
@@ -33,7 +37,7 @@ class ToDoList extends React.Component{
           <h2 className="todoListHeader">Tasks to do list</h2>
 
           {
-            isCreateMode ? <AddTaskPanel addTask={addTask} todos={todos}/> :  <EditTaskPanel />
+            isCreateMode ? <AddTaskPanel addTask={addTask} todos={todos}/> :  <EditTaskPanel editingTask={this.getEditingTask()} />
           }
 
           <div className="todoList">
