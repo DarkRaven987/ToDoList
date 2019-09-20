@@ -2,7 +2,15 @@ import React from 'react';
 
 export const EditTaskPanel = (props) => {
 
-    const { editTaskNumber, setEditingTaskTitle, getEditingTaskTitle, getEditingTask } = props;
+    const {
+        editTask,
+        setEditingTaskTitle,
+        setPanelMode,
+        setEditingTask,
+        getEditTaskNumber,
+        getEditingTaskTitle,
+        getEditingTask
+    } = props;
 
 
     const buttonClickHandler = ( isEdit = false ) => {
@@ -10,20 +18,19 @@ export const EditTaskPanel = (props) => {
 
         if ( isEdit ) {
             if ( titleCondition ) {
-                props.editTask( getEditingTask() );
-                props.setEditingTask({});
-                props.setPanelMode(true);
+                editTask( getEditingTask() );
+                setEditingTask({});
+                setPanelMode(true);
             } else alert('Task title is too short. Should be more than 4 symbols.');
         } else {
-            props.setEditingTask({});
-            props.setPanelMode(true);
+            setEditingTask({});
+            setPanelMode(true);
         }
-
     };
 
     return(
         <div className="addTaskContainer">
-            <h3>Task #{ editTaskNumber() + 1 }:</h3>
+            <h3>Task #{ getEditTaskNumber() + 1 }:</h3>
             <input id="editTask" type="text" placeholder="Enter task title" value={ getEditingTaskTitle() } onChange={ (e) => setEditingTaskTitle(e) }/>
             <div className="newTaskControlPanel">
                 <div className="newTaskButton Add" onClick={ () => buttonClickHandler(true) }>Edit</div>

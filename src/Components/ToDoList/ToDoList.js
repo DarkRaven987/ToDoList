@@ -31,7 +31,6 @@ class ToDoList extends React.Component{
   };
 
   getEditingTaskTitle = () => {
-    console.log(this.state.editingTask.title);
     return this.state.editingTask.title;
   };
 
@@ -65,14 +64,13 @@ class ToDoList extends React.Component{
                 />
                 :
                 <EditTaskPanel
-                    editingTask={ this.getEditingTask() }
+                    editTask={ editTask }
                     setEditingTask={ this.setEditingTask }
                     setEditingTaskTitle={ this.setEditingTaskTitle }
                     setPanelMode={ this.setPanelMode }
                     getEditingTaskTitle={ this.getEditingTaskTitle }
                     getEditingTask={ this.getEditingTask }
-                    editTask={ editTask }
-                    editTaskNumber={ this.getEditingTaskNumber }
+                    getEditTaskNumber={ this.getEditingTaskNumber }
                 />
           }
 
