@@ -2,20 +2,13 @@ import React from 'react';
 import MaterialIcon from 'material-icons-react'
 
 class ToDoListItem extends React.Component {
-  constructor(props){
-      super(props);
-
-      this.state =  {
-          status: this.props.item.isDone
-      }
-  }
 
   render(){
       const { number, item, setEditingTask, setTaskDone, setTaskUndone, } = this.props;
-      const { status } = this.state,
-          isNeutral = status === 'neutral',
-          isDone = status === 'done',
-          isUndone = status === 'undone';
+      let isNeutral = item.isDone === 'neutral',
+          isDone = item.isDone === 'done',
+          isUndone = item.isDone === 'undone';
+
 
       return(
           <div className={ isDone ? "itemContainer doneItem" : isUndone ? "itemContainer undoneItem" : 'itemContainer' }>

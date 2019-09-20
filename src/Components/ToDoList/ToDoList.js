@@ -26,8 +26,6 @@ class ToDoList extends React.Component{
     const { todos, addTask, setTaskDone, setTaskUndone } = this.props;
     const { isCreateMode } = this.state;
 
-    console.log(typeof(todos));
-
     return(
       <div className="todoListEnv">
         <div className="listContainer">
