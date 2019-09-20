@@ -34,25 +34,22 @@ function reducer ( state = initialStore, action ){
             };
         case SET_TASK_DONE:
             tasks = state.todos.map( (el, i) => {
-                if(i === action.payload) el.isDone = 'done';
+                if( el.id === action.payload ) el.isDone = 'done';
                 return el;
             });
             return {
                 ...state,
-                todos: {
-                    tasks
-                }
+                todos: tasks
+
             };
         case SET_TASK_UNDONE:
-            tasks = state.todos.map( (el, i) => {
-                if(i === action.payload) el.isDone = 'undone';
+            tasks = state.todos.map( (el) => {
+                if( el.id === action.payload ) el.isDone = 'undone';
                 return el;
             });
             return {
                 ...state,
-                todos: {
-                    tasks
-                }
+                todos: tasks
             };
         default:
             return {
