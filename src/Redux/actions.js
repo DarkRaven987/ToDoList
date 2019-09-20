@@ -1,4 +1,4 @@
-import { ADD_TASK, SET_TASK_DONE, SET_TASK_UNDONE } from'./constants';
+import { ADD_TASK, SET_TASK_DONE, SET_TASK_UNDONE, EDIT_TASK } from'./constants';
 
 export const addTask = (task) =>  {
     return {
@@ -20,3 +20,10 @@ export const setTaskUndone = (taskNumber) => {
         payload: taskNumber
     }
 };
+
+export const editTask = (editedTask) => {
+    return {
+        type: EDIT_TASK,
+        payload: editedTask
+    }
+}

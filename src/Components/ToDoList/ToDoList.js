@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import { bindActionCreators } from "redux";
 
-import {addTask, setTaskDone, setTaskUndone} from "../../Redux/actions";
+import { addTask, setTaskDone, setTaskUndone, editTask } from "../../Redux/actions";
 import ToDoListItem from "../ToDoListItem/ToDoListItem";
 import AddTaskPanel from '../AddTaskPanel/AddTaskPanel';
 import EditTaskPanel from "../EditTaskPanel/EditTaskPanel";
@@ -73,7 +73,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addTask: bindActionCreators(addTask, dispatch),
     setTaskDone: bindActionCreators(setTaskDone, dispatch),
-    setTaskUndone: bindActionCreators(setTaskUndone, dispatch)
+    setTaskUndone: bindActionCreators(setTaskUndone, dispatch),
+    editTask: bindActionCreators(editTask, dispatch),
   }
 }
 

@@ -1,6 +1,6 @@
 import { createStore } from "redux";
 import { composeWithDevTools } from 'redux-devtools-extension';
-import {ADD_TASK, SET_TASK_DONE, SET_TASK_UNDONE} from './constants';
+import {ADD_TASK, SET_TASK_DONE, SET_TASK_UNDONE, EDIT_TASK} from './constants';
 
 let initialStore = {
     todos: [
@@ -45,6 +45,15 @@ function reducer ( state = initialStore, action ){
         case SET_TASK_UNDONE:
             tasks = state.todos.map( (el) => {
                 if( el.id === action.payload ) el.isDone = 'undone';
+                return el;
+            });
+            return {
+                ...state,
+                todos: tasks
+            };
+        case EDIT_TASK:
+            tasks = state.todos.map( (el) => {
+                if( el.id === action.payload.id ) el.title = action.payload.title;
                 return el;
             });
             return {
