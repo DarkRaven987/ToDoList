@@ -3,7 +3,7 @@ import MaterialIcon from 'material-icons-react'
 
 const ToDoListItem = ( props ) => {
 
-  const { number, item, setEditingTask, setTaskDone, setTaskUndone, } = props;
+  const { number, item, setEditingTask, setTaskDone, setTaskUndone, setPanelMode } = props;
   let isNeutral = item.isDone === 'neutral',
       isDone = item.isDone === 'done',
       isUndone = item.isDone === 'undone';
@@ -15,7 +15,7 @@ const ToDoListItem = ( props ) => {
           <div className="itemTitle">{item.title}</div>
           <div className="itemControlPanel">
 
-              <div className="iconContainer edit" onClick={() => setEditingTask(item)}>
+              <div className="iconContainer edit" onClick={() => { setEditingTask(item); setPanelMode(false) }}>
                   <MaterialIcon icon="edit" invert/>
               </div>
 

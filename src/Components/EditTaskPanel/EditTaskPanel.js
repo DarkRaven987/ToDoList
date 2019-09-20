@@ -5,13 +5,17 @@ class EditTaskPanel extends React.Component {
         super(props);
 
         this.state = {
-            editingTask: this.props.editingTask
+            editingTask: {}
         }
     }
 
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        return nextProps.editingTask.id !== this.state.editingTask.id
+    }
+
     changeTaskTitle = (e) => {
-        this.setState({newTask: {
-                ...this.state.newTask,
+        this.setState({editingTask: {
+                ...this.state.editingTask,
                 title: e.target.value
             }});
     };
@@ -21,22 +25,24 @@ class EditTaskPanel extends React.Component {
 
         if ( isEdit ) {
             titleCondition ?
-                this.props.addTask(this.state.newTask)
+                this.props.editTask(this.state.editingTask)
                 :
                 alert('Task title is too short. Should be more than 4 symbols.');
         }
 
-        this.setState({newTask: {
-                ...this.state.newTask,
-                title: ''
-            }});
+        this.props.setEditingTask({});
+        this.props.setPanelMode(true);
     };
 
     render(){
+        const { id, title } = this.state.editingTask;
+
+        this.setState({editingTask: this.props.editingTask});
+
         return(
             <div className="addTaskContainer">
-                <h3>Task #{ this.props.editingTask.id }:</h3>
-                <input id="editTask" type="text" placeholder="Enter task title" value={ this.state.editingTask.title } onChange={ (e) => this.changeTaskTitle(e) }/>
+                <h3>Task #{ id }:</h3>
+                <input id="editTask" type="text" placeholder="Enter task title" value={ title } onChange={ (e) => this.changeTaskTitle(e) }/>
                 <div className="newTaskControlPanel">
                     <div className="newTaskButton Add" onClick={ () => this.buttonClickHandler(true) }>Edit</div>
                     <div className="newTaskButton Clear" onClick={ () => this.buttonClickHandler() }>Cancel</div>

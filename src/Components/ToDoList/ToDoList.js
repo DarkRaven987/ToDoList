@@ -19,15 +19,19 @@ class ToDoList extends React.Component{
   }
 
   setEditingTask = (task) => {
-    this.setState({ editingTask: task, isCreateMode: false});
+    this.setState({ editingTask: task});
   };
+
+  setPanelMode = ( mode ) => {
+    this.setState({ isCreateMode: mode});
+  }
 
   getEditingTask = () => {
     return this.state.editingTask;
   }
 
   render(){
-    const { todos, addTask, setTaskDone, setTaskUndone } = this.props;
+    const { todos, addTask, setTaskDone, setTaskUndone, editTask } = this.props;
     const { isCreateMode } = this.state;
 
     return(
@@ -37,7 +41,18 @@ class ToDoList extends React.Component{
           <h2 className="todoListHeader">Tasks to do list</h2>
 
           {
-            isCreateMode ? <AddTaskPanel addTask={addTask} todos={todos}/> :  <EditTaskPanel editingTask={this.getEditingTask()} />
+            isCreateMode ?
+                <AddTaskPanel
+                    addTask={ addTask }
+                    todos={ todos }
+                />
+                :
+                <EditTaskPanel
+                    editingTask={ this.getEditingTask() }
+                    setEditingTask={ this.setEditingTask }
+                    setPanelMode={ this.setPanelMode }
+                    editTask={ editTask }
+                />
           }
 
           <div className="todoList">
@@ -48,7 +63,8 @@ class ToDoList extends React.Component{
                         item={ el }
                         key={ el.id }
                         number={ i }
-                        setEditingTask={this.setEditingTask}
+                        setEditingTask={ this.setEditingTask }
+                        setPanelMode={ this.setPanelMode }
                         setTaskDone={ setTaskDone }
                         setTaskUndone={ setTaskUndone }
                     />
