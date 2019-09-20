@@ -15,7 +15,7 @@ const ToDoListItem = ( props ) => {
           <div className="itemTitle">{item.title}</div>
           <div className="itemControlPanel">
 
-              <div className="iconContainer edit" onClick={() => { setEditingTask(item); setPanelMode(false) }}>
+              <div className="iconContainer edit" onClick={ async () => { await setEditingTask( item, number ); setPanelMode(false) }}>
                   <MaterialIcon icon="edit" invert/>
               </div>
 
