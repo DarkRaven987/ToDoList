@@ -12,7 +12,6 @@ const App = () => {
   return (
     <div className="App">
       <Router>
-        <div>
           <Header/>
 
           <Switch>
@@ -26,7 +25,6 @@ const App = () => {
               <Page404/>
             </Route>
           </Switch>
-        </div>
       </Router>
     </div>
   );
