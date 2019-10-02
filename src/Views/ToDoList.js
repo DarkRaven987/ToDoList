@@ -51,8 +51,8 @@ class ToDoList extends React.Component{
     const { isCreateMode } = this.state;
 
     return(
-      <div className="todoListEnv">
-        <div className="listContainer">
+      <div className="container">
+        <div className="content_container">
 
           <h2 className="todoListHeader">Tasks to do list</h2>
 
