@@ -2,10 +2,10 @@ import React from 'react';
 import {connect} from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { addTask, setTaskDone, setTaskUndone, editTask, deleteTask } from "../../Redux/actions";
-import ToDoListItem from "../ToDoListItem/ToDoListItem";
-import AddTaskPanel from '../AddTaskPanel/AddTaskPanel';
-import EditTaskPanel from "../EditTaskPanel/EditTaskPanel";
+import { addTask, setTaskDone, setTaskUndone, editTask, deleteTask } from "../Redux/actions";
+import ToDoListItem from "../Components/ToDoListItem/ToDoListItem";
+import AddTaskPanel from '../Components/AddTaskPanel/AddTaskPanel';
+import EditTaskPanel from "../Components/EditTaskPanel/EditTaskPanel";
 
 class ToDoList extends React.Component{
 
