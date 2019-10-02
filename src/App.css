@@ -45,8 +45,38 @@
   width: 85vw;
 }
 
+.ErrorPageLink {
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  margin-top: 20%;
+  cursor: pointer;
+  border: 2px solid lightslategrey;
+  border-radius: 15px;
+  padding: 1em 3em
+}
+
+.ErrorPageLink:visited {
+  color: white;
+}
+
+.ErrorPageLink>span {
+  color: black;
+}
+
+.ErrorPageLink>i {
+  color: black !important;
+  margin-right: 0.5em;
+  font-size: 40px !important;
+}
+
 .todoListHeader{
   height: 10%;
+}
+
+.greatSizeTitle{
+  margin-top: 1em;
+  font-size: 60px;
 }
 
 .addTaskContainer, .editTaskContainer {
