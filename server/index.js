@@ -7,19 +7,22 @@ const port           = 3001;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//DB CONNECTION INSTALL
 const connection = mysql.createConnection({
     host: db.host,
+    port: db.port,
     user: db.user,
-    database: db.database,
+    database: db.db_name,
     password: db.password
 });
 
+//DB CONNECT
 connection.connect(function(err){
     if (err) {
         return console.error("Ошибка: " + err.message);
     }
 
-    require('./routes');
+    require('./routes')(app, connection);
 
     app.listen(port, () => {
         console.log('We are live on ' + port);

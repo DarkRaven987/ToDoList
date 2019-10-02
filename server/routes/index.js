@@ -1,6 +1,7 @@
-const noteRoutes = require('./route_notes');
+const usersRoutes = require('./route_users'),
+      tasksRoutes = require('./route_tasks');
 
 module.exports = function(app, db) {
-    noteRoutes(app, db);
-
+    usersRoutes(app, db);
+    tasksRoutes(app, db);
 };
