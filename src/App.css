@@ -18,28 +18,31 @@
 
 .header {
   border-radius: 0 0 15px 15px;
-  height: 100px;
+  height: 10%;
 }
 
-.todoFooter{
-  border-radius: 15px 15px 0 0;
-  height: 50px;
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
 }
 
-.todoListEnv {
-  padding: 5vh 20vw;
-  height: 679px;
-}
-
-.listContainer {
+.content_container {
   display: flex;
   align-items: center;
   flex-direction: column;
   background-color: #fefefe;
   border-radius: 5px;
   box-shadow: #727272 0px 0px 15px;
-  height: 100%;
-  padding: 10px;
+  height: 80%;
+  width: 50vw;
+  padding: 10px 10px 25px 10px;
+}
+
+.error_page {
+  height: 80%;
+  width: 85vw;
 }
 
 .todoListHeader{
