@@ -11,16 +11,7 @@ module.exports = function(app, db) {
         let username = req.body.name,
             pass = req.body.pass,
             query = `SELECT * FROM users WHERE user_name = '${username}' AND user_password = '${pass}'`;
-        db.query( query , function(error, result, fields){
-            if (error) res.send(error);
-            res.send(result);
-        });
-    });
-
-    app.get('/tasks/:id', (req, res) => {
-        let user_id = req.params.id,
-            query = `SELECT * FROM tasks WHERE user_id = '${user_id}'`;
-        db.query( query, function(error, result, fields){
+        db.query(query, function (error, result, fields) {
             if (error) res.send(error);
             res.send(result);
         });
