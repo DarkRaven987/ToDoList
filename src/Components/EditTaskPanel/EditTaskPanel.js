@@ -30,8 +30,8 @@ export const EditTaskPanel = (props) => {
             <h3>Task #{ getEditTaskNumber() + 1 }:</h3>
             <input id="editTask" type="text" placeholder="Enter task title" value={ getEditingTaskTitle() } onChange={ (e) => setEditingTaskTitle(e) }/>
             <div className="TaskControlPanel">
-                <div className="TaskButton Add" onClick={ () => buttonClickHandler(true) }>Edit</div>
-                <div className="TaskButton Clear" onClick={ () => buttonClickHandler() }>Cancel</div>
+                <div className="Button Add" onClick={ () => buttonClickHandler(true) }>Edit</div>
+                <div className="Button Clear" onClick={ () => buttonClickHandler() }>Cancel</div>
             </div>
         </div>
 
