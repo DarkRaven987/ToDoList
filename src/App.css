@@ -67,13 +67,60 @@
   font-size: 40px !important;
 }
 
-.todoListHeader{
+.loginForm {
+  height: 55%;
+  width: 40%;
+}
+
+.todoListHeader {
   height: 10%;
 }
 
-.greatSizeTitle{
+.greatSizeTitle {
   margin-top: 1em;
   font-size: 60px;
+}
+
+.middleSizeTitle {
+  margin-top: 0.5em;
+  font-size: 40px;
+}
+
+.borderWithTitle {
+  position: relative;
+  height: 90%;
+  width: 80%;
+  border: 2px solid lightslategrey;
+  border-radius: 5px;
+  margin-top: 5%;
+  padding: 1em;
+}
+
+.loginFormContent {
+  height: 100%
+}
+
+.formItemContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 1em;
+}
+
+.formItemContainer>input {
+  padding-left: 20px;
+  margin-left: 15px;
+  width: 300px;
+  height: 50px;
+  font-size: 25px;
+}
+
+.borderWithTitle>span {
+  position: absolute;
+  top: -45px;
+  width: 40%;
+  left: 30%;
+  background-color: #fefefe;
 }
 
 .addTaskContainer, .editTaskContainer {
@@ -86,35 +133,51 @@
   border-radius: 15px;
 }
 
-.TaskControlPanel{
+.TaskControlPanel {
   display: flex;
   align-items: center;
   width: auto;
   margin: 0.7em 0;
 }
 
-.TaskButton{
+.Button {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   color: #fefefe;
-  width: 100px;
+  width: auto;
   margin-left: 1em;
   border-radius: 5px;
   cursor: pointer;
   user-select: none;
 }
 
-.Add{
+.Add {
   background-color: #43cb42;
 }
 
-.Clear{
+.Clear {
   background-color: #00c5fe;
 }
 
-#newTask, #editTask{
+.Alert {
+  background-color: #ff8a00;
+}
+
+.greatPadding {
+  padding: 1em;
+}
+
+.middlePadding {
+  padding: 0.5em;
+}
+
+.smallPadding {
+  padding: 0.25em;
+}
+
+#newTask, #editTask, input {
   height: auto;
   margin: 1em 0;
   border-radius: 5px;
@@ -124,7 +187,7 @@
   outline: none;
 }
 
-.todoList{
+.todoList {
   display: flex;
   flex-direction: column;
   height: 80%;
@@ -132,22 +195,22 @@
   overflow-y: scroll;
 }
 
-.todoList::-webkit-scrollbar{
+.todoList::-webkit-scrollbar {
   width: 8px;
 }
 
-.todoList::-webkit-scrollbar-thumb{
+.todoList::-webkit-scrollbar-thumb {
   box-shadow: inset 0 0 5px black;
   border-radius: 15px;
   background-color: #817e7f;
 }
 
-.todoList::-webkit-scrollbar-track{
+.todoList::-webkit-scrollbar-track {
   box-shadow: inset 0 0 5px grey;
   border-radius: 15px;
 }
 
-.itemContainer{
+.itemContainer {
   display: flex;
   width: auto;
   align-items: center;
@@ -158,28 +221,33 @@
   transition: background-color linear 0.2s;
 }
 
-.itemNumber{
+.itemNumber {
   width: fit-content;
   margin-right: 1em;
 }
 
-.itemTitle{
+.itemTitle {
   text-align: left;
   width: 60%;
 }
 
-.itemControlPanel{
+.itemControlPanel {
   display: flex;
   justify-content: space-around;
   width: 35%;
 }
 
-.itemControlPanel img{
+.controlPanel {
+  display: flex;
+  justify-content: space-around;
+}
+
+.itemControlPanel img {
   width: 25px;
   height: 25px;
 }
 
-.iconContainer{
+.iconContainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -191,11 +259,11 @@
   user-select: none;
 }
 
-.doneItem{
+.doneItem {
   background-color: #89ef88;
 }
 
-.undoneItem{
+.undoneItem {
   background-color: #e68774;
 }
 
@@ -203,28 +271,28 @@
   background-color: #43cb42;
 }
 
-.edit{
+.edit {
   background-color: #009aff;
 }
 
-.delete{
+.delete {
   background-color: indianred;
 }
 
-@media screen and ( max-width: 1232px ){
+@media screen and ( max-width: 1232px ) {
   .addTaskContainer {
     width: 90%;
   }
 }
 
-@media screen and ( max-width: 965px ){
+@media screen and ( max-width: 965px ) {
   .addTaskContainer {
     flex-direction: column;
     height: fit-content;
     align-items: center;
   }
 
-  .addTaskContainer h3:first-child{
+  .addTaskContainer h3:first-child {
     margin: .5em 0;
   }
 
@@ -234,13 +302,13 @@
     margin-bottom: 0.5em;
   }
 
-  .TaskControlPanel{
+  .TaskControlPanel {
     margin-top: 0.5em;
     height: 40px;
   }
 }
 
-@media screen and ( max-width: 850px ){
+@media screen and ( max-width: 850px ) {
   .todoListEnv{
     padding: 5vh 10vw;
   }
