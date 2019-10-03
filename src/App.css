@@ -8,15 +8,12 @@
   background-color: aqua;
 }
 
-.headerAndFooter{
+.header {
   display: flex;
   align-items: center;
   justify-content: space-around;
   box-shadow: #727272 0px 10px 100px;
   background-color: #fdfdfd;
-}
-
-.header {
   border-radius: 0 0 15px 15px;
   height: 10%;
 }
