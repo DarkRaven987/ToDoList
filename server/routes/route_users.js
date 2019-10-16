@@ -7,10 +7,11 @@ module.exports = function(app, db) {
         });
     });
 
-    app.get('/users/auth', (req, res) => {
+    app.post('/users/auth', (req, res) => {
         let username = req.body.name,
-            pass = req.body.pass,
-            query = `SELECT * FROM users WHERE user_name = '${username}' AND user_password = '${pass}'`;
+            hash = req.body.hash,
+            query = `SELECT user_id FROM users WHERE user_name = '${username}' AND user_hash = '${hash}'`;
+
         db.query(query, function (error, result, fields) {
             if (error) res.send(error);
             res.send(result);
