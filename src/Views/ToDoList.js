@@ -2,10 +2,11 @@ import React from 'react';
 import {connect} from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { addTask, setTaskDone, setTaskUndone, editTask, deleteTask } from "../Redux/actions";
+import {addTask, setTaskDone, setTaskUndone, editTask, deleteTask, loadTasks} from "../Redux/actions";
 import ToDoListItem from "../Components/ToDoListItem/ToDoListItem";
 import AddTaskPanel from '../Components/AddTaskPanel/AddTaskPanel';
 import EditTaskPanel from "../Components/EditTaskPanel/EditTaskPanel";
+import {getCookie, sendRequest} from "../utility";
 
 class ToDoList extends React.Component{
 
@@ -17,6 +18,10 @@ class ToDoList extends React.Component{
       editingTask: {},
       editingTaskNumber: '',
     }
+  }
+
+  componentWillMount() {
+    sendRequest('POST', '/tasks', `user_id=${getCookie('user_id')}`, this.props.loadTasks);
   }
 
   setEditingTask = (task, number) => {
@@ -52,7 +57,7 @@ class ToDoList extends React.Component{
 
     return(
       <div className="container">
-        <div className="content_container">
+        <div className="content_container tasks_list">
 
           <h2 className="todoListHeader">Tasks to do list</h2>
 
@@ -79,7 +84,7 @@ class ToDoList extends React.Component{
                 return (
                     <ToDoListItem
                         item={ el }
-                        key={ el.id }
+                        key={ el.task_id }
                         number={ i }
                         setEditingTask={ this.setEditingTask }
                         setPanelMode={ this.setPanelMode }
@@ -106,6 +111,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    loadTasks: bindActionCreators(loadTasks, dispatch),
     addTask: bindActionCreators(addTask, dispatch),
     setTaskDone: bindActionCreators(setTaskDone, dispatch),
     setTaskUndone: bindActionCreators(setTaskUndone, dispatch),
