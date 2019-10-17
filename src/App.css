@@ -18,10 +18,19 @@
   height: 10%;
 }
 
+.header h3 {
+  cursor: pointer;
+}
+
+.header h3:hover {
+  color: #262626;
+  text-decoration: underline;
+}
+
 .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /*display: flex;*/
+  /*align-items: center;*/
+  /*justify-content: center;*/
   height: 90%;
 }
 
@@ -33,8 +42,11 @@
   border-radius: 5px;
   box-shadow: #727272 0px 0px 15px;
   height: 80%;
+  min-height: 541px;
   width: 50vw;
+  min-width: 541px;
   padding: 10px 10px 25px 10px;
+  margin: 150px auto;
 }
 
 .error_page {
