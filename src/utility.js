@@ -10,7 +10,7 @@ export function getCookie(name) {
 export function sendRequest(method, link, body="", updateMethod) {
   let xhr = new XMLHttpRequest();
 
-  xhr.open( 'POST', `http://127.0.0.1:7777${link}`, true);
+  xhr.open( method, `http://127.0.0.1:7777${link}`, true);
 
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
