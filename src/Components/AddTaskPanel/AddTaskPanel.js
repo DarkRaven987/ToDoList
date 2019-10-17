@@ -1,52 +1,42 @@
 import React from 'react';
+import {getCookie, sendRequest} from "../../utility";
 
 class AddTaskPanel extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            newTask: {
-                task_id: '',
-                task_title: '',
-                isDone: false
-            }
+          task_title: '',
         }
     }
 
     changeTaskTitle = (e) => {
-      this.setState({newTask: {
-          ...this.state.newTask,
-          title: e.target.value
-      }});
+      this.setState({
+          task_title: e.target.value
+      });
     };
 
     buttonClickHandler = ( isAdd = false ) => {
-      const { todos } = this.props;
-      let titleCondition = this.state.newTask.title.length > 4;
+      let titleCondition = this.state.task_title.length > 4;
+      const { task_title } = this.state;
 
       if ( isAdd ) {
           if (titleCondition) {
-            this.setState({ newTask: {
-                ...this.state.newTask,
-                task_id: todos[todos.length-1].task_id+1
-              }}, () => {
-                this.props.addTask(this.state.newTask)
-            });
+            sendRequest("POST", '/tasks/add', `task_title=${task_title}&user_id=${getCookie('user_id')}`, this.props.addTask);
           } else {
             alert('Task title is too short. Should be more than 4 symbols.')
           }
       }
 
-      this.setState({newTask: {
-              ...this.state.newTask,
-              title: ''
-          }});
+      this.setState({
+              task_title: ''
+          });
     };
 
     render(){
         return(
             <div className="addTaskContainer">
                 <h3>New task:</h3>
-                <input id="newTask" type="text" placeholder="Enter new task title" value={ this.state.newTask.title } onChange={ (e) => this.changeTaskTitle(e) }/>
+                <input id="newTask" type="text" placeholder="Enter new task title" value={ this.state.task_title } onChange={ (e) => this.changeTaskTitle(e) }/>
                 <div className="TaskControlPanel">
                     <div className="Button Add" onClick={ () => this.buttonClickHandler(true) }>Add</div>
                     <div className="Button Clear" onClick={ () => this.buttonClickHandler() }>Clear</div>
