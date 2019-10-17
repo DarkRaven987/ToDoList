@@ -1,4 +1,3 @@
-import md5 from "md5";
 
 export function getCookie(name) {
   let matches = document.cookie.match(new RegExp(

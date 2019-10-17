@@ -1,7 +1,7 @@
 import React from 'react';
 import md5 from 'md5';
 
-import {getCookie, sendRequest} from "../utility";
+import { sendRequest } from "../utility";
 
 class LoginForm extends React.Component {
   constructor(props){
@@ -36,6 +36,7 @@ class LoginForm extends React.Component {
     }
 
     const result = JSON.parse(val)[0].user_id;
+
     this.setState({serverResponse: result}, () => {
       document.cookie = `user_id=${this.state.serverResponse}; max-age=43200`;
       this.setState({serverResponse: ''});

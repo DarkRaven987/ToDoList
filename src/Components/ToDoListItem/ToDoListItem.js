@@ -4,8 +4,7 @@ import MaterialIcon from 'material-icons-react'
 const ToDoListItem = ( props ) => {
 
   const { number, item, setEditingTask, setTaskDone, setTaskUndone, setPanelMode, deleteTask } = props;
-  let isNeutral = item.task_status === 'neutral',
-      isDone = item.task_status === 'done',
+  let isDone = item.task_status === 'done',
       isUndone = item.task_status === 'undone';
 
 
