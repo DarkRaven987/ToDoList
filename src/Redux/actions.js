@@ -1,4 +1,18 @@
-import { ADD_TASK, SET_TASK_DONE, SET_TASK_UNDONE, EDIT_TASK, DELETE_TASK } from'./constants';
+import {
+    ADD_TASK,
+    SET_TASK_DONE,
+    SET_TASK_UNDONE,
+    EDIT_TASK,
+    DELETE_TASK,
+    LOAD_TASKS
+} from'./constants';
+
+export const loadTasks = (tasks) => {
+    return {
+        type: LOAD_TASKS,
+        payload: JSON.parse(tasks)
+    }
+}
 
 export const addTask = (task) =>  {
     return {
