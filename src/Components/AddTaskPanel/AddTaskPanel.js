@@ -3,11 +3,10 @@ import React from 'react';
 class AddTaskPanel extends React.Component {
     constructor(props){
         super(props);
-        const { todos } = this.props;
         this.state = {
             newTask: {
-                id: todos[todos.length-1].id+1,
-                title: '',
+                task_id: '',
+                task_title: '',
                 isDone: false
             }
         }
@@ -21,19 +20,26 @@ class AddTaskPanel extends React.Component {
     };
 
     buttonClickHandler = ( isAdd = false ) => {
-        let titleCondition = this.state.newTask.title.length > 4;
+      const { todos } = this.props;
+      let titleCondition = this.state.newTask.title.length > 4;
 
-        if ( isAdd ) {
-            titleCondition ?
-                this.props.addTask(this.state.newTask)
-                :
-                alert('Task title is too short. Should be more than 4 symbols.');
-        }
-
-        this.setState({newTask: {
+      if ( isAdd ) {
+          if (titleCondition) {
+            this.setState({ newTask: {
                 ...this.state.newTask,
-                title: ''
-            }});
+                task_id: todos[todos.length-1].task_id+1
+              }}, () => {
+                this.props.addTask(this.state.newTask)
+            });
+          } else {
+            alert('Task title is too short. Should be more than 4 symbols.')
+          }
+      }
+
+      this.setState({newTask: {
+              ...this.state.newTask,
+              title: ''
+          }});
     };
 
     render(){
