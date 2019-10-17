@@ -8,8 +8,8 @@ class LoginForm extends React.Component {
     super(props);
 
     this.state = {
-      username: 'qwerty123',
-      password: 'qwerty123',
+      username: '',
+      password: '',
       serverResponse: ''
     }
   }
@@ -35,9 +35,9 @@ class LoginForm extends React.Component {
       return null;
     }
 
-    const result = JSON.parse(val);
+    const result = JSON.parse(val)[0].user_id;
     this.setState({serverResponse: result}, () => {
-      document.cookie = `user_id=${this.state.serverResponse}; max-age=600`;
+      document.cookie = `user_id=${this.state.serverResponse}; max-age=43200`;
       this.setState({serverResponse: ''});
       document.location.href = '/';
     });
