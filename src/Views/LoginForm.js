@@ -8,9 +8,9 @@ class LoginForm extends React.Component {
     super(props);
 
     this.state = {
-      username: 'darkraven987',
-      password: 'megamanx123987',
-      loggedUserId: ''
+      username: 'qwerty123',
+      password: 'qwerty123',
+      serverResponse: ''
     }
   }
 
@@ -18,35 +18,39 @@ class LoginForm extends React.Component {
     const { username, password } = this.state;
     const { loginUser } = this;
 
-    let xhr = new XMLHttpRequest();
-
-    xhr.open( 'POST', `http://127.0.0.1:7777/users/auth`, true);
-
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-    xhr.onload = function () {
-      let res = JSON.parse(xhr.response);
-      if (!res.length) {
-        alert(new Error("Username or password is incorrect!"));
-      } else {
-         loginUser(res);
-      }
-    };
-
-    xhr.send(`name=${username}&hash=${md5(username+password)}`);
+    sendRequest('POST', '/users/auth', `name=${username}&hash=${md5(username+password)}`, loginUser);
 
   };
 
+  setUserRegistered = () => {
+    const { username, password } = this.state;
+    const { registerUser } = this;
+
+    sendRequest('POST', '/users/register', `name=${username}&hash=${md5(username+password)}`, registerUser);
+  };
+
   loginUser = (val) => {
-    this.setState({loggedUserId: val[0].user_id}, () => {
-      document.cookie = `user_id=${this.state.loggedUserId}; max-age=0`;
-      this.setState({loggedUserId: ''});
+    if (!JSON.parse(val).length) {
+      alert('Username or password is incorrect. Please, try again.');
+      return null;
+    }
+
+    const result = JSON.parse(val);
+    this.setState({serverResponse: result}, () => {
+      document.cookie = `user_id=${this.state.serverResponse}; max-age=600`;
+      this.setState({serverResponse: ''});
       document.location.href = '/';
     });
   };
 
-  registerUser = () => {
-
+  registerUser = (val) => {
+    this.setState({serverResponse: val}, () => {
+      !!Number(this.state.serverResponse)  ?
+        alert('User has been registered successfully.')
+        :
+        alert('This username is already in use. Pick another one.') ;
+      this.setState({serverResponse: ''});
+    });
   };
 
   handleUsername = (e) => {
@@ -76,7 +80,7 @@ class LoginForm extends React.Component {
               </div>
               <div className="controlPanel greatPadding">
                 <div className="Button Clear middlePadding" style={{margin: 0}} onClick={ () => this.setUserLogged()}>Login</div>
-                <div className="Button Alert middlePadding" style={{margin: 0}}>Register</div>
+                <div className="Button Alert middlePadding" style={{margin: 0}} onClick={ () => this.setUserRegistered()}>Register</div>
               </div>
             </form>
           </div>
