@@ -49,11 +49,11 @@ body {
   width: 50vw;
   min-width: 541px;
   padding: 10px 10px 25px 10px;
-  margin: 150px auto 0;
+  margin: 50px auto 0;
 }
 
 .tasks_list {
-  height: 40%;
+  height: 85%;
 }
 
 .error_page {
@@ -69,7 +69,7 @@ body {
   cursor: pointer;
   border: 2px solid lightslategrey;
   border-radius: 15px;
-  padding: 1em 3em
+  padding: 1em 3em;
 }
 
 .ErrorPageLink:visited {
@@ -87,8 +87,10 @@ body {
 }
 
 .loginForm {
-  height: 55%;
+  height: 42%;
+  min-height: 380px;
   width: 40%;
+  margin-top: 12%;
 }
 
 .todoListHeader {
@@ -116,6 +118,10 @@ body {
 }
 
 .loginFormContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   height: 100%
 }
 
@@ -171,11 +177,19 @@ body {
   justify-content: center;
   align-items: center;
   height: 100%;
+  font-size: 25px;
   color: #fefefe;
   width: 45%;
+  box-shadow: 0 0 0 inset transparent;
+  border: 0 solid transparent;
   border-radius: 5px;
   cursor: pointer;
   user-select: none;
+  transition: 0.3s linear;
+}
+
+.Button:hover {
+  box-shadow: 0 0 10px inset ;
 }
 
 .Add {
