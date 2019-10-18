@@ -14,9 +14,11 @@ class LoginForm extends React.Component {
     }
   }
 
-  setUserLogged = () => {
+  setUserLogged = (e) => {
     const { username, password } = this.state;
     const { loginUser } = this;
+
+    e.preventDefault();
 
     sendRequest('POST', '/users/auth', `name=${username}&hash=${md5(username+password)}`, loginUser);
 
@@ -70,18 +72,20 @@ class LoginForm extends React.Component {
           <span className="middleSizeTitle">
             Login
           </span>
-            <form className="loginFormContent" action="">
-              <div className="formItemContainer">
-                <label htmlFor="username" style={{fontSize: 25}} >Username</label>
-                <input type="text" id="username" value={this.state.username} onChange={(e) => this.handleUsername(e)} autoComplete="off"/>
-              </div>
-              <div className="formItemContainer">
-                <label htmlFor="password" style={{fontSize: 25}} >Password</label>
-                <input type="password" id="password" value={this.state.password} onChange={(e) => this.handlePassword(e)}/>
+            <form id={'login_form'} className="loginFormContent" onSubmit={this.setUserLogged}>
+              <div className="inputPanel">
+                <label className="formItemContainer">
+                  <span style={{fontSize: 25}} >Username</span>
+                  <input type="text" id="username" name='username' value={this.state.username} onChange={(e) => this.handleUsername(e)} autoComplete="off"/>
+                </label>
+                <label className="formItemContainer">
+                  <label htmlFor="password" style={{fontSize: 25}} >Password</label>
+                  <input type="password" id="password" value={this.state.password} onChange={(e) => this.handlePassword(e)}/>
+                </label>
               </div>
               <div className="controlPanel greatPadding">
-                <div className="Button Clear middlePadding" style={{margin: 0}} onClick={ () => this.setUserLogged()}>Login</div>
-                <div className="Button Alert middlePadding" style={{margin: 0}} onClick={ () => this.setUserRegistered()}>Register</div>
+                <button type={"submit"} className="Button Clear middlePadding" style={{margin: 0}}>Login</button>
+                <button className="Button Alert middlePadding" style={{margin: 0}} onClick={ () => this.setUserRegistered()}>Register</button>
               </div>
             </form>
           </div>
