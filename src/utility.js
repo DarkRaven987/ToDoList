@@ -26,5 +26,7 @@ export function sendRequest(method, link, body="", updateMethod) {
     }
   };
 
+  clg('qwe');
+
   xhr.send(body);
 }

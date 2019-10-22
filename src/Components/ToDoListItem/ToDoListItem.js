@@ -1,14 +1,13 @@
 import React from 'react';
 import MaterialIcon from 'material-icons-react'
 import {sendRequest} from "../../utility";
-import { send } from 'q';
 
 const ToDoListItem = ( props ) => {
 
   const { number, item, setEditingTask, setPanelMode, editTask, deleteTask } = props;
   let isDone = item.task_status === 'done',
       isUndone = item.task_status === 'undone',
-    {task_id, task_title, task_status} = item;
+    { task_id, task_title } = item;
 
 
   return(

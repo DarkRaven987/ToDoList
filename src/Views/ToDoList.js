@@ -31,12 +31,8 @@ class ToDoList extends React.Component{
   setEditingTaskTitle = (e) => {
     this.setState({editingTask: {
         ...this.state.editingTask,
-          title: e.target.value
+          task_title: e.target.value
       }})
-  };
-
-  getEditingTaskTitle = () => {
-    return this.state.editingTask.title;
   };
 
   setPanelMode = ( mode ) => {
@@ -72,9 +68,8 @@ class ToDoList extends React.Component{
                     editTask={ editTask }
                     setEditingTaskTitle={ this.setEditingTaskTitle }
                     setPanelMode={ this.setPanelMode }
-                    getEditingTaskTitle={ this.getEditingTaskTitle }
                     getEditingTask={ this.getEditingTask }
-                    getEditTaskNumber={ this.getEditingTaskNumber }
+                    getEditingTaskNumber={ this.getEditingTaskNumber }
                 />
           }
 

@@ -28,6 +28,8 @@ module.exports = function(app, db) {
     app.post('/tasks/update', (req, res) => {
         let { task_id, task_title, task_status } = req.body;
 
+        console.log(req.body);
+
         let  query = `UPDATE tasks SET task_title='${task_title}', task_status='${task_status}', task_updated_date=NOW() WHERE task_id=${task_id}`,
             updatedTaskIndexQ = `SELECT task_id, task_title, task_description, task_status FROM tasks WHERE task_id = '${task_id}'`;
 
@@ -38,6 +40,7 @@ module.exports = function(app, db) {
 
         db.query( updatedTaskIndexQ, function(error, result, fields){
             if (error) res.send(error);
+            console.log(result);
             res.send(result[result.length-1]);
         });
     });
