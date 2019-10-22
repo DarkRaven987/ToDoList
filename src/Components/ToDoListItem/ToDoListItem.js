@@ -1,6 +1,7 @@
 import React from 'react';
 import MaterialIcon from 'material-icons-react'
 import {sendRequest} from "../../utility";
+import { send } from 'q';
 
 const ToDoListItem = ( props ) => {
 
@@ -27,13 +28,13 @@ const ToDoListItem = ( props ) => {
               )}
 
               { !isUndone && (
-                  <div className="iconContainer delete undone" /*onClick={ () => setTaskUndone(task_id)}*/ >
+                  <div className="iconContainer delete undone" onClick={ () => sendRequest('POST', '/tasks/update', `task_id=${task_id}&task_title=${task_title}&task_status=undone`, editTask)} >
                       <MaterialIcon  icon= "close" invert/>
                   </div>
               )}
 
               { (isUndone || isDone) && (
-                  <div className="iconContainer delete undone" /*onClick={ () => deleteTask(task_id) }*/>
+                  <div className="iconContainer delete undone" onClick={ () => sendRequest('POST', '/tasks/delete', `task_id=${task_id}`, deleteTask) }>
                       <MaterialIcon  icon= "delete_forever" invert />
                   </div>
               )}
