@@ -1,17 +1,19 @@
 import React from 'react';
 import MaterialIcon from 'material-icons-react'
+import {sendRequest} from "../../utility";
 
 const ToDoListItem = ( props ) => {
 
-  const { number, item, setEditingTask, setTaskDone, setTaskUndone, setPanelMode, deleteTask } = props;
+  const { number, item, setEditingTask, setPanelMode, editTask, deleteTask } = props;
   let isDone = item.task_status === 'done',
-      isUndone = item.task_status === 'undone';
+      isUndone = item.task_status === 'undone',
+    {task_id, task_title, task_status} = item;
 
 
   return(
       <div className={ isDone ? "itemContainer doneItem" : isUndone ? "itemContainer undoneItem" : 'itemContainer' }>
           <div className="itemNumber">{number+1}.</div>
-          <div className="itemTitle">{item.task_title}</div>
+          <div className="itemTitle">{task_title}</div>
           <div className="itemControlPanel">
 
               <div className="iconContainer edit" onClick={ async () => { await setEditingTask( item, number ); setPanelMode(false) }}>
@@ -19,19 +21,19 @@ const ToDoListItem = ( props ) => {
               </div>
 
               { !isDone && (
-                  <div className="iconContainer done" onClick={() => setTaskDone(item.task_id) }>
+                  <div className="iconContainer done" onClick={() => sendRequest('POST', '/tasks/update', `task_id=${task_id}&task_title=${task_title}&task_status=done`, editTask) }>
                       <MaterialIcon icon="done" invert/>
                   </div>
               )}
 
               { !isUndone && (
-                  <div className="iconContainer delete undone" onClick={ () => setTaskUndone(item.task_id) } >
+                  <div className="iconContainer delete undone" /*onClick={ () => setTaskUndone(task_id)}*/ >
                       <MaterialIcon  icon= "close" invert/>
                   </div>
               )}
 
               { (isUndone || isDone) && (
-                  <div className="iconContainer delete undone" onClick={ () => deleteTask(item.task_id) }>
+                  <div className="iconContainer delete undone" /*onClick={ () => deleteTask(task_id) }*/>
                       <MaterialIcon  icon= "delete_forever" invert />
                   </div>
               )}

@@ -1,10 +1,8 @@
 import {
     ADD_TASK,
-    SET_TASK_DONE,
-    SET_TASK_UNDONE,
     EDIT_TASK,
     DELETE_TASK,
-    LOAD_TASKS
+    LOAD_TASKS,
 } from'./constants';
 
 export const loadTasks = (tasks) => {
@@ -21,30 +19,16 @@ export const addTask = (task) =>  {
     }
 };
 
-export const setTaskDone = (taskNumber) => {
-    return {
-        type: SET_TASK_DONE,
-        payload: taskNumber
-    }
-};
-
-export const setTaskUndone = (taskNumber) => {
-    return {
-        type: SET_TASK_UNDONE,
-        payload: taskNumber
-    }
-};
-
 export const editTask = (editedTask) => {
     return {
         type: EDIT_TASK,
-        payload: editedTask
+        payload: JSON.parse(editedTask)
     }
 };
 
 export const deleteTask = (taskNumber) => {
     return {
         type: DELETE_TASK,
-        payload: taskNumber
+        payload: JSON.parse(taskNumber)
     }
 }
