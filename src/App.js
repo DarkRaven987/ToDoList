@@ -6,7 +6,7 @@ import ToDoList from './Views/ToDoList';
 import LoginForm from './Views/LoginForm';
 import Page404 from './Views/Page404'
 import './App.css';
-import {getCookie} from "./utility";
+import { getCookie } from "./utility";
 
 
 function redirectIfNotLogged() {
