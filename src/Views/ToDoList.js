@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { addTask, editTask, deleteTask, loadTasks } from "../Redux/actions";
+import { addTask, editTask, deleteTask, loadTasks, filterTasks } from "../Redux/actions";
 import ToDoListItem from "../Components/ToDoListItem/ToDoListItem";
 import AddTaskPanel from '../Components/AddTaskPanel/AddTaskPanel';
 import EditTaskPanel from "../Components/EditTaskPanel/EditTaskPanel";
@@ -61,70 +61,18 @@ class ToDoList extends React.Component{
   };
 
   selectCategory = ( param ) => {
-    switch(param) {
-      case 'home':
         this.setState({
           ...this.state,
           filter_values: {
             ...this.state.filter_values,
             category: {
               ...this.state.filter_values.category,
-              home: !this.state.filter_values.category.home
+              [param]: !this.state.filter_values.category[param]
             }
           }
         });
-        break;
-      case 'work':
-        this.setState({
-          ...this.state,
-          filter_values: {
-            ...this.state.filter_values,
-            category: {
-              ...this.state.filter_values.category,
-              work: !this.state.filter_values.category.work
-            }
-          }
-        });
-        break;
-      case 'shop':
-        this.setState({
-          ...this.state,
-          filter_values: {
-            ...this.state.filter_values,
-            category: {
-              ...this.state.filter_values.category,
-              shop: !this.state.filter_values.category.shop
-            }
-          }
-        });
-        break;
-      case 'tourism':
-        this.setState({
-          ...this.state,
-          filter_values: {
-            ...this.state.filter_values,
-            category: {
-              ...this.state.filter_values.category,
-              tourism: !this.state.filter_values.category.tourism
-            }
-          }
-        });
-        break;
-      case 'other':
-        this.setState({
-          ...this.state,
-          filter_values: {
-            ...this.state.filter_values,
-            category: {
-              ...this.state.filter_values.category,
-              other: !this.state.filter_values.category.other
-            }
-          }
-        });
-        break;
-      default:
-    }
   }
+  
 
   selectStatus = (status) => {
     this.setState({
@@ -136,8 +84,18 @@ class ToDoList extends React.Component{
     });
   }
 
+  inputSearchTitle = (title) => {
+    this.setState({
+      ...this.state,
+      filter_values: {
+        ...this.state.filter_values,
+        task_title: title
+      }
+    })
+  }
+
   render(){
-    const { todos, addTask, editTask, deleteTask } = this.props;
+    const { todos, addTask, editTask, deleteTask, filterTasks } = this.props;
     const { isCreateMode, filter_values } = this.state;
 
     return(
@@ -149,7 +107,7 @@ class ToDoList extends React.Component{
             <div className="filterOptions">
               <div className="filter_option">
                 <h3>Task title</h3>
-                <input className="title_search_input" placeholder="Task title" />
+                <input className="title_search_input" value={ filter_values.task_title } onChange={ (e) => this.inputSearchTitle(e.target.value) } placeholder="Task title" />
               </div>
               <div className="filter_option">
                 <DropDown title="Status">
@@ -216,7 +174,7 @@ class ToDoList extends React.Component{
                 </DropDown>
               </div>
             </div>
-            <button className="filterSearchButton Clear">
+            <button className="filterSearchButton Clear" onClick={ () => filterTasks(filter_values) }>
               Search
             </button>
           </div>
@@ -277,6 +235,7 @@ const mapDispatchToProps = (dispatch) => {
     addTask: bindActionCreators(addTask, dispatch),
     editTask: bindActionCreators(editTask, dispatch),
     deleteTask: bindActionCreators(deleteTask, dispatch),
+    filterTasks: bindActionCreators(filterTasks, dispatch),
   }
 };
 
