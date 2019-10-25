@@ -3,6 +3,7 @@ import {
     EDIT_TASK,
     DELETE_TASK,
     LOAD_TASKS,
+    FILTER_TASKS
 } from'./constants';
 
 export const loadTasks = (tasks) => {
@@ -30,5 +31,12 @@ export const deleteTask = (taskNumber) => {
     return {
         type: DELETE_TASK,
         payload: JSON.parse(taskNumber)
+    }
+}
+
+export const filterTasks = ( conditionObject ) => {
+    return {
+        type: FILTER_TASKS,
+        payload: conditionObject
     }
 }

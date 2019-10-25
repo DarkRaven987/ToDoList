@@ -5,11 +5,13 @@ import {
     ADD_TASK,
     EDIT_TASK,
     DELETE_TASK,
-    LOAD_TASKS
+    LOAD_TASKS,
+    FILTER_TASKS
 } from './constants';
 
 let initialStore = {
-    todos: []
+    todos: [],
+    filtered_todos: []
 };
 
 function reducer ( state = initialStore, action ){
@@ -49,6 +51,9 @@ function reducer ( state = initialStore, action ){
                 ...state,
                 todos: tasks
             };
+        case FILTER_TASKS: 
+            console.log(action.payload);
+            break;
         default:
             return {
                 ...state
