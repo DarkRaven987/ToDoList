@@ -208,10 +208,13 @@ body {
 }
 
 .loginForm {
-  height: 42%;
+  height: fit-content;
   min-height: 380px;
   width: 40%;
   margin-top: 12%;
+  border-radius: 15px;
+  background-color: #fefefe;
+  padding: 10px 30px 30px;
 }
 
 .todoListHeader {
@@ -230,8 +233,8 @@ body {
 
 .borderWithTitle {
   position: relative;
-  height: 90%;
-  width: 80%;
+  /* height: 90%;
+  width: 80%; */
   border: 2px solid lightslategrey;
   border-radius: 5px;
   margin-top: 5%;
@@ -337,7 +340,7 @@ body {
   padding: 0.25em;
 }
 
-#newTask, #editTask, .title_search_input, input[type=text] {
+#newTask, #editTask, .title_search_input, input[type=text], input[type=password] {
   height: 40px;
   font-size: 16px;
   margin: 8px 0 0;
